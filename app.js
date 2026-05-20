@@ -10,6 +10,12 @@ const erroHandler = require("./middlewares/errorHandler");
 
 const app = express();
 
+// Documentación de OpenAPI
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./docs/openapi.yaml");
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // Middleware para parsear JSON
 app.use(express.json());
 
