@@ -4,6 +4,8 @@ const router = express.Router();
 // Importamos el controlador de los posts
 const postsController = require("../controllers/postsController");
 
+const { validatePost } = require("../middlewares/validations");
+
 // GET /blog/posts - Obtener todos los posts
 router.get("/", postsController.getAllPosts);
 // GET /blog/posts/:id - Obtener un post por ID
@@ -11,7 +13,7 @@ router.get("/:id", postsController.getPostsId);
 // GET /blog/posts/author/:authorId - Obtener posts con detalle de su author
 router.get("/author/:authorId", postsController.getPostsByAuthor);
 // POST /blog/posts - Crear un nuevo post
-router.post("/", postsController.postNewPost);
+router.post("/", validatePost, postsController.postNewPost);
 // PUT /blog/posts/:id - Actualizar un post
 router.put("/:id", postsController.putPosts);
 // DELETE /blog/posts/:id - Eliminar un post
