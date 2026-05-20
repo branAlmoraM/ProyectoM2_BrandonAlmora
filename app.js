@@ -5,6 +5,7 @@ const express = require("express");
 
 const authorRoutes = require("./routes/authors");
 const postsRoutes = require("./routes/posts");
+const notFound = require("./middlewares/notFound");
 
 const app = express();
 
@@ -25,5 +26,8 @@ app.get("/", (req, res) => {
     },
   });
 });
+
+// Middleware para manejar rutas no encontradas
+app.use(notFound);
 
 module.exports = app;
