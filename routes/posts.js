@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.json({ message: "Posts route works" });
-});
+// Importamos el controlador de los posts
+const postsController = require("../controllers/postsController");
+
+// GET /blog/posts - Obtener todos los posts
+router.get("/", postsController.getAllPosts);
 
 module.exports = router;
