@@ -12,7 +12,7 @@ router.get("/:id", postsController.getPostsId);
 router.post("/", postsController.postNewPost);
 // PUT /blog/posts/:id - Actualizar un post
 router.put("/:id", postsController.putPosts);
-// // DELETE /blog/posts/:id - Eliminar un post
-// router.delete("/:id", postsController.deletePosts);
+// DELETE /blog/posts/:id - Eliminar un post
+router.delete("/:id", postsController.deletePosts);
 
 module.exports = router;

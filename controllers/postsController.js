@@ -90,27 +90,28 @@ const putPosts = async (req, res) => {
   }
 };
 
-// // DELETE /blog/posts/:id - Eliminar un post
-// const deletePosts = async (req, res) => {
-//   try {
-//     const result = await pool.query("DELETE FROM posts WHERE id = $1", [
-//       req.params.id,
-//     ]);
+// DELETE /blog/posts/:id - Eliminar un post
+const deletePosts = async (req, res) => {
+  try {
+    const result = await pool.query("DELETE FROM posts WHERE id = $1", [
+      req.params.id,
+    ]);
 
-//     if (result.rowCount === 0) {
-//       return res.status(404).json({ error: "Post no encontrado" });
-//     }
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: "Post no encontrado" });
+    }
 
-//     res.json({ message: "Post eliminado exitosamente" });
-//   } catch (error) {
-//     console.error("Error eliminando post:", error);
-//     res.status(500).json({ error: "Error eliminando post" });
-//   }
-// };
+    res.json({ message: "Post eliminado exitosamente" });
+  } catch (error) {
+    console.error("Error eliminando post:", error);
+    res.status(500).json({ error: "Error eliminando post" });
+  }
+};
 
 module.exports = {
   getAllPosts,
   getPostsId,
   postNewPost,
   putPosts,
+  deletePosts,
 };
