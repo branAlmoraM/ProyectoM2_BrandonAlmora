@@ -23,4 +23,92 @@ const getAllPosts = async (req, res) => {
   }
 };
 
-module.exports = { getAllPosts };
+// GET /blog/posts/:id - Obtener un post por ID
+const getPostsId = async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM posts WHERE id = $1", [
+      req.params.id,
+    ]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Post no encontrado" });
+    }
+
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error("Error obteniendo post:", error);
+    res.status(500).json({ error: "Error obteniendo post" });
+  }
+};
+
+// // POST /blog/posts - Crear un nuevo post
+// const postNewPost = async (req, res) => {
+//   const { title, content, author_id, published } = req.body;
+
+//   if (!title || !content || !author_id) {
+//     return res.status(400).json({
+//       error: "Título, contenido y author_id son requeridos",
+//     });
+//   }
+
+//   try {
+//     const result = await pool.query(
+//       "INSERT INTO posts (title, content, author_id, published) VALUES ($1, $2, $3, $4) RETURNING *",
+//       [title, content, author_id, published || false],
+//     );
+
+//     res.status(201).json(result.rows[0]);
+//   } catch (error) {
+//     console.error("Error creando post:", error);
+
+//     if (error.code === "23503") {
+//       return res.status(404).json({ error: "El autor especificado no existe" });
+//     }
+
+//     res.status(500).json({ error: "Error creando post" });
+//   }
+// };
+
+// // PUT /blog/posts/:id - Actualizar un post
+// const putPosts = async (req, res) => {
+//   const { title, content, published } = req.body;
+
+//   try {
+//     const result = await pool.query(
+//       "UPDATE posts SET title = COALESCE($1, title), content = COALESCE($2, content), published = COALESCE($3, published) WHERE id = $4 RETURNING *",
+//       [title, content, published, req.params.id],
+//     );
+
+//     if (result.rows.length === 0) {
+//       return res.status(404).json({ error: "Post no encontrado" });
+//     }
+
+//     res.json(result.rows[0]);
+//   } catch (error) {
+//     console.error("Error actualizando post:", error);
+//     res.status(500).json({ error: "Error actualizando post" });
+//   }
+// };
+
+// // DELETE /blog/posts/:id - Eliminar un post
+// const deletePosts = async (req, res) => {
+//   try {
+//     const result = await pool.query("DELETE FROM posts WHERE id = $1", [
+//       req.params.id,
+//     ]);
+
+//     if (result.rowCount === 0) {
+//       return res.status(404).json({ error: "Post no encontrado" });
+//     }
+
+//     res.json({ message: "Post eliminado exitosamente" });
+//   } catch (error) {
+//     console.error("Error eliminando post:", error);
+//     res.status(500).json({ error: "Error eliminando post" });
+//   }
+// };
+
+module.exports = {
+  getAllPosts,
+  getPostsId,
+};
