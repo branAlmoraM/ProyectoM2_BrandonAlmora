@@ -10,5 +10,7 @@ router.get("/", authorsController.getAllAuthors);
 router.get("/:id", authorsController.getAuthorId);
 // POST /blog/authors - Crear un nuevo autor
 router.post("/", authorsController.postAuthor);
+// PUT /blog/authors/:id - Actualizar información de un autor
+router.put("/:id", authorsController.putAuthorId);
 
 module.exports = router;
