@@ -81,4 +81,28 @@ const putAuthorId = async (req, res) => {
   }
 };
 
-module.exports = { getAllAuthors, getAuthorId, postAuthor, putAuthorId };
+// DELETE /blog/authors/:id - Eliminar un autor
+const deleteAuthor = async (req, res) => {
+  try {
+    const result = await pool.query("DELETE FROM authors WHERE id = $1", [
+      req.params.id,
+    ]);
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: "Autor no encontrado" });
+    }
+
+    res.json({ message: "Autor eliminado exitosamente" });
+  } catch (error) {
+    console.error("Error eliminando autor:", error);
+    res.status(500).json({ error: "Error eliminando autor" });
+  }
+};
+
+module.exports = {
+  getAllAuthors,
+  getAuthorId,
+  postAuthor,
+  putAuthorId,
+  deleteAuthor,
+};

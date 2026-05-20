@@ -12,5 +12,7 @@ router.get("/:id", authorsController.getAuthorId);
 router.post("/", authorsController.postAuthor);
 // PUT /blog/authors/:id - Actualizar información de un autor
 router.put("/:id", authorsController.putAuthorId);
+// DELETE /blog/authors/:id - Eliminar un autor
+router.delete("/:id", authorsController.deleteAuthor);
 
 module.exports = router;
