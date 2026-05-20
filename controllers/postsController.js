@@ -41,9 +41,46 @@ const getPostsId = async (req, res) => {
   }
 };
 
+// GET /blog/posts/author/:authorId - Obtener posts con detalle de su author
+const getPostsByAuthor = async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT 
+        posts.id,
+        posts.title,
+        posts.content,
+        posts.published,
+        posts.created_at,
+        authors.id AS author_id,
+        authors.name AS author_name,
+        authors.email AS author_email,
+        authors.bio AS author_bio
+      FROM posts
+      INNER JOIN authors
+      ON posts.author_id = authors.id
+      WHERE authors.id = $1
+      ORDER BY posts.created_at DESC`,
+      [req.params.authorId],
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        error: "No se encontraron posts para este autor",
+      });
+    }
+
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error("Error obteniendo posts del autor:", error);
+    res.status(500).json({
+      error: "Error obteniendo posts del autor",
+    });
+  }
+};
+
 // POST /blog/posts - Crear un nuevo post
 const postNewPost = async (req, res) => {
-  const { title, content, author_id, published } = req.body;
+  const { author_id, title, content, published } = req.body;
 
   if (!title || !content || !author_id) {
     return res.status(400).json({
@@ -53,8 +90,8 @@ const postNewPost = async (req, res) => {
 
   try {
     const result = await pool.query(
-      "INSERT INTO posts (title, content, author_id, published) VALUES ($1, $2, $3, $4) RETURNING *",
-      [title, content, author_id, published || false],
+      "INSERT INTO posts (author_id, title, content, published) VALUES ($1, $2, $3, $4) RETURNING *",
+      [author_id, title, content, published || false],
     );
 
     res.status(201).json(result.rows[0]);
@@ -114,4 +151,5 @@ module.exports = {
   postNewPost,
   putPosts,
   deletePosts,
+  getPostsByAuthor,
 };
