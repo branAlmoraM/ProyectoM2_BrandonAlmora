@@ -1,4 +1,6 @@
 // Aquí definimos la aplicación
+const { loadEnvFile } = require("node:process");
+loadEnvFile(".env");
 const express = require("express");
 
 const authorRoutes = require("./routes/authors");
@@ -9,7 +11,10 @@ const app = express();
 // Middleware para parsear JSON
 app.use(express.json());
 
-// Ruta raíz
+// Rutas
+app.use("/blog/authors", authorRoutes);
+app.use("/blog/posts", postsRoutes);
+
 // Ruta raíz
 app.get("/", (req, res) => {
   res.json({
@@ -20,8 +25,5 @@ app.get("/", (req, res) => {
     },
   });
 });
-
-app.use("/blog/authors", authorRoutes);
-app.use("/blog/posts", postsRoutes);
 
 module.exports = app;
