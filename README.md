@@ -343,7 +343,61 @@ DB_PASSWORD=
 
 ### Prompt 1
 
-## ![en este prompt, se le da a ChatGPT el contexto sobre el proyecto, es decir que es lo que se va a realizar para que tenga en cuenta las características principales.](./screenshots/prompt1.1.png)
+En este prompt, se le da a ChatGPT el contexto sobre el proyecto, es decir que es lo que se va a realizar para que tenga en cuenta las características principales.
+
+## ![prompt 1 utilizado](./screenshots/prompt1.1.png)
+
+## ![prompt 1 utilizado](./screenshots/prompt1.2.png)
+
+### Prompt 2
+
+En el segundo prompt se le otorgaron a la IA, los objetivos a cumplir dentro del proyecto, para que tuviera en cuenta en que etapas podría concentrarse al requerir algún tipo de apoyo.
+
+## ![prompt 2 utilizado](./screenshots/prompt2.1.png)
+
+### Prompt 3
+
+En nuestro tercer prompt, se le dio a ChatGPT el alcance mínimo que debería tener el proyecto, con el fin de tener una evaluación de su parte de ser requerida.
+
+## ![prompt 3 utilizado](./screenshots/prompt3.1.png)
+
+## ![prompt 3 utilizado](./screenshots/prompt3.2.png)
+
+### Prompt 4
+
+En este prompt, se le compartió la estructura de carpetas y archivos usada para mejorar, de su parte se obtuvo una mejora en separar endpoints en controladores y rutas para hacer archivos más simples y manejables, lo cual ayudo a que el proyecto tuviera una mejora de entendimiento y una estructura más clara. Además de la sugerencia de agregar los middlewares. Por último también la sugerencia de dividir en server.js y app.js.
+
+## ![prompt 4 utilizado](./screenshots/prompt4.1.png)
+
+## ![prompt 4 utilizado](./screenshots/prompt4.2.png)
+
+## ![prompt 4 utilizado](./screenshots/prompt4.3.png)
+
+## ![prompt 4 utilizado](./screenshots/prompt4.4.png)
+
+## ![prompt 4 utilizado](./screenshots/prompt4.5.png)
+
+## ![prompt 4 utilizado](./screenshots/prompt4.6.png)
+
+## ![prompt 4 utilizado](./screenshots/prompt4.7.png)
+
+### Prompt 5
+
+Para este prompt, se le pidió un ejemplo con el endpoint de /authors es decir que obtuviera todos los autores, separando controladores y rutas, el ejemplo explicado de manera correcta por la IA, permitió que los demás controladores y rutas de los endpoints tanto para authors como para posts se crearan de una manera satisfactoria, separando el código y haciéndolo más mantenible.
+
+## ![prompt 5 utilizado](./screenshots/prompt5.1.png)
+
+## ![prompt 5 utilizado](./screenshots/prompt5.2.png)
+
+## ![prompt 5 utilizado](./screenshots/prompt5.3.png)
+
+## ![prompt 5 utilizado](./screenshots/prompt5.4.png)
+
+## ![prompt 5 utilizado](./screenshots/prompt5.5.png)
+
+## ![prompt 5 utilizado](./screenshots/prompt5.6.png)
+
+---
 
 ## 👨‍💻 Autor
 
