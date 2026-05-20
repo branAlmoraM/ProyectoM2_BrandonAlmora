@@ -10,8 +10,8 @@ router.get("/", postsController.getAllPosts);
 router.get("/:id", postsController.getPostsId);
 // POST /blog/posts - Crear un nuevo post
 router.post("/", postsController.postNewPost);
-// // PUT /blog/posts/:id - Actualizar un post
-// router.put("/:id", postsController.putPosts);
+// PUT /blog/posts/:id - Actualizar un post
+router.put("/:id", postsController.putPosts);
 // // DELETE /blog/posts/:id - Eliminar un post
 // router.delete("/:id", postsController.deletePosts);
 

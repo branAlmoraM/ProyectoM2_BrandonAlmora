@@ -69,26 +69,26 @@ const postNewPost = async (req, res) => {
   }
 };
 
-// // PUT /blog/posts/:id - Actualizar un post
-// const putPosts = async (req, res) => {
-//   const { title, content, published } = req.body;
+// PUT /blog/posts/:id - Actualizar un post
+const putPosts = async (req, res) => {
+  const { title, content, published } = req.body;
 
-//   try {
-//     const result = await pool.query(
-//       "UPDATE posts SET title = COALESCE($1, title), content = COALESCE($2, content), published = COALESCE($3, published) WHERE id = $4 RETURNING *",
-//       [title, content, published, req.params.id],
-//     );
+  try {
+    const result = await pool.query(
+      "UPDATE posts SET title = COALESCE($1, title), content = COALESCE($2, content), published = COALESCE($3, published) WHERE id = $4 RETURNING *",
+      [title, content, published, req.params.id],
+    );
 
-//     if (result.rows.length === 0) {
-//       return res.status(404).json({ error: "Post no encontrado" });
-//     }
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Post no encontrado" });
+    }
 
-//     res.json(result.rows[0]);
-//   } catch (error) {
-//     console.error("Error actualizando post:", error);
-//     res.status(500).json({ error: "Error actualizando post" });
-//   }
-// };
+    res.json(result.rows[0]);
+  } catch (error) {
+    console.error("Error actualizando post:", error);
+    res.status(500).json({ error: "Error actualizando post" });
+  }
+};
 
 // // DELETE /blog/posts/:id - Eliminar un post
 // const deletePosts = async (req, res) => {
@@ -112,4 +112,5 @@ module.exports = {
   getAllPosts,
   getPostsId,
   postNewPost,
+  putPosts,
 };
