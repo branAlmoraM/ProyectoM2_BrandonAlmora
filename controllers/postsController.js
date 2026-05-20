@@ -41,33 +41,33 @@ const getPostsId = async (req, res) => {
   }
 };
 
-// // POST /blog/posts - Crear un nuevo post
-// const postNewPost = async (req, res) => {
-//   const { title, content, author_id, published } = req.body;
+// POST /blog/posts - Crear un nuevo post
+const postNewPost = async (req, res) => {
+  const { title, content, author_id, published } = req.body;
 
-//   if (!title || !content || !author_id) {
-//     return res.status(400).json({
-//       error: "Título, contenido y author_id son requeridos",
-//     });
-//   }
+  if (!title || !content || !author_id) {
+    return res.status(400).json({
+      error: "Título, contenido y author_id son requeridos",
+    });
+  }
 
-//   try {
-//     const result = await pool.query(
-//       "INSERT INTO posts (title, content, author_id, published) VALUES ($1, $2, $3, $4) RETURNING *",
-//       [title, content, author_id, published || false],
-//     );
+  try {
+    const result = await pool.query(
+      "INSERT INTO posts (title, content, author_id, published) VALUES ($1, $2, $3, $4) RETURNING *",
+      [title, content, author_id, published || false],
+    );
 
-//     res.status(201).json(result.rows[0]);
-//   } catch (error) {
-//     console.error("Error creando post:", error);
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error creando post:", error);
 
-//     if (error.code === "23503") {
-//       return res.status(404).json({ error: "El autor especificado no existe" });
-//     }
+    if (error.code === "23503") {
+      return res.status(404).json({ error: "El autor especificado no existe" });
+    }
 
-//     res.status(500).json({ error: "Error creando post" });
-//   }
-// };
+    res.status(500).json({ error: "Error creando post" });
+  }
+};
 
 // // PUT /blog/posts/:id - Actualizar un post
 // const putPosts = async (req, res) => {
@@ -111,4 +111,5 @@ const getPostsId = async (req, res) => {
 module.exports = {
   getAllPosts,
   getPostsId,
+  postNewPost,
 };

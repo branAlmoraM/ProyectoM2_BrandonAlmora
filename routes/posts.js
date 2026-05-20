@@ -8,8 +8,8 @@ const postsController = require("../controllers/postsController");
 router.get("/", postsController.getAllPosts);
 // GET /blog/posts/:id - Obtener un post por ID
 router.get("/:id", postsController.getPostsId);
-// // POST /blog/posts - Crear un nuevo post
-// router.post("/", postsController.postNewPost);
+// POST /blog/posts - Crear un nuevo post
+router.post("/", postsController.postNewPost);
 // // PUT /blog/posts/:id - Actualizar un post
 // router.put("/:id", postsController.putPosts);
 // // DELETE /blog/posts/:id - Eliminar un post
