@@ -29,4 +29,30 @@ const getAuthorId = async (req, res) => {
   }
 };
 
-module.exports = { getAllAuthors, getAuthorId };
+// POST /blog/authors - Crear un nuevo autor
+const postAuthor = async (req, res) => {
+  const { name, email, bio } = req.body;
+
+  if (!name || !email) {
+    return res.status(400).json({ error: "Nombre y email son requeridos" });
+  }
+
+  try {
+    const result = await pool.query(
+      "INSERT INTO authors (name, email, bio) VALUES ($1, $2, $3) RETURNING *",
+      [name, email, bio || null],
+    );
+
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error creando autor:", error);
+
+    if (error.code === "23505") {
+      return res.status(409).json({ error: "El email ya está registrado" });
+    }
+
+    res.status(500).json({ error: "Error creando autor" });
+  }
+};
+
+module.exports = { getAllAuthors, getAuthorId, postAuthor };

@@ -8,5 +8,7 @@ const authorsController = require("../controllers/authorsController");
 router.get("/", authorsController.getAllAuthors);
 // GET /blog/authors/:id - Obtener un autor por ID
 router.get("/:id", authorsController.getAuthorId);
+// POST /blog/authors - Crear un nuevo autor
+router.post("/", authorsController.postAuthor);
 
 module.exports = router;
