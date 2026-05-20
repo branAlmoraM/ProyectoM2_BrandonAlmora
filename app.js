@@ -6,6 +6,7 @@ const express = require("express");
 const authorRoutes = require("./routes/authors");
 const postsRoutes = require("./routes/posts");
 const notFound = require("./middlewares/notFound");
+const erroHandler = require("./middlewares/errorHandler");
 
 const app = express();
 
@@ -29,5 +30,9 @@ app.get("/", (req, res) => {
 
 // Middleware para manejar rutas no encontradas
 app.use(notFound);
+// Manejo de errores de PostgreSQL
+app.use(erroHandler.errorPostgre);
+// Manejo de errores del servidor
+app.use(erroHandler.manejoErrores);
 
 module.exports = app;
