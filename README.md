@@ -7,7 +7,7 @@ Proyecto construido con Node.js, Express, y PostgreSQL. Desplegado en Railway.
 
 ## 🔗 URL Base
 
-[https://blog-api-production.up.railway.app](https://blog-api-production.up.railway.app)
+[https://proyectom2brandonalmora-production.up.railway.app/](https://proyectom2brandonalmora-production.up.railway.app/)
 
 Todas las rutas están bajo `/blog`.
 
@@ -55,161 +55,60 @@ Todas las rutas están bajo `/blog`.
 ### Obtener todos los autores
 
 ```bash
-curl https://blog-api-production.up.railway.app/api/authors
+curl https://proyectom2brandonalmora-production.up.railway.app/blog/authors
 ```
 
 **Respuesta:**
 
 ```json
-[
-  \{
-    "id": 1,
-    "name": "Ana García",
-    "email": "ana@example.com",
-    "bio": "Desarrolladora full-stack apasionada por Node.js",
-    "created_at": "2024-02-06T15:30:00.000Z"
-  \},
-  \{
-    "id": 2,
-    "name": "Carlos Ruiz",
-    "email": "carlos@example.com",
-    "bio": "Escritor técnico especializado en bases de datos",
-    "created_at": "2024-02-06T15:30:00.000Z"
-  \}
-]
+  [
+    \{
+        "id":1,
+        "name":"Ana GarcÃ­a",
+        "email":"ana@example.com",
+        "bio":"Desarrolladora full-stack apasionada por Node.js",
+        "created_at":"2026-05-21T01:38:23.034Z"
+    \},
+    \{
+        "id":2,
+        "name":"Carlos Ruiz",
+        "email":"carlos@example.com",
+        "bio":"Escritor tÃ©cnico especializado en bases de datos",
+        "created_at":"2026-05-21T01:38:23.034Z"
+    \},
+    \{
+        "id":3,
+        "name":"MarÃ­a LÃ³pez",
+        "email":"maria@example.com",
+        "bio":"Ingeniera de software con foco en APIs REST",
+        "created_at":"2026-05-21T01:38:23.034Z"
+    \},
+    \{
+        "id":4,
+        "name":"Test User",
+        "email":"test@example.com",
+        "bio":"Usuario de prueba",
+        "created_at":"2026-05-21T01:45:45.934Z"
+    \}
+  ]
 ```
 
 ### Obtener un autor específico
 
 ```bash
-curl https://blog-api-production.up.railway.app/api/authors/1
+curl https://proyectom2brandonalmora-production.up.railway.app/blog/authors/1
 ```
 
 **Respuesta:**
 
 ```json
 \{
-  "id": 1,
-  "name": "Ana García",
-  "email": "ana@example.com",
-  "bio": "Desarrolladora full-stack apasionada por Node.js",
-  "created_at": "2024-02-06T15:30:00.000Z"
+        "id":1,
+        "name":"Ana GarcÃ­a",
+        "email":"ana@example.com",
+        "bio":"Desarrolladora full-stack apasionada por Node.js",
+        "created_at":"2026-05-21T01:38:23.034Z"
 \}
-```
-
-### Crear un nuevo autor
-
-```bash
-curl -X POST https://blog-api-production.up.railway.app/api/authors \
-  -H "Content-Type: application/json" \
-  -d '\{
-    "name": "María Rodríguez",
-    "email": "maria.rodriguez@example.com",
-    "bio": "Ingeniera de software especializada en APIs"
-  \}'
-```
-
-**Respuesta:**
-
-```json
-\{
-  "id": 4,
-  "name": "María Rodríguez",
-  "email": "maria.rodriguez@example.com",
-  "bio": "Ingeniera de software especializada en APIs",
-  "created_at": "2024-02-06T16:45:00.000Z"
-\}
-```
-
-### Actualizar un autor
-
-```bash
-curl -X PUT https://blog-api-production.up.railway.app/api/authors/4 \
-  -H "Content-Type: application/json" \
-  -d '\{
-    "bio": "Ingeniera de software y speaker internacional"
-  \}'
-```
-
-**Respuesta:**
-
-```json
-\{
-  "id": 4,
-  "name": "María Rodríguez",
-  "email": "maria.rodriguez@example.com",
-  "bio": "Ingeniera de software y speaker internacional",
-  "created_at": "2024-02-06T16:45:00.000Z"
-\}
-```
-
-### Eliminar un autor
-
-```bash
-curl -X DELETE https://blog-api-production.up.railway.app/api/authors/4
-```
-
-**Respuesta:**
-
-```json
-\{
-  "message": "Autor eliminado exitosamente"
-\}
-```
-
-### Crear un post
-
-```bash
-curl -X POST https://blog-api-production.up.railway.app/api/posts \
-  -H "Content-Type: application/json" \
-  -d '\{
-    "title": "Introducción a PostgreSQL",
-    "content": "PostgreSQL es una base de datos relacional de código abierto...",
-    "author_id": 1,
-    "published": true
-  \}'
-```
-
-**Respuesta:**
-
-```json
-\{
-  "id": 6,
-  "title": "Introducción a PostgreSQL",
-  "content": "PostgreSQL es una base de datos relacional de código abierto...",
-  "author_id": 1,
-  "published": true,
-  "created_at": "2024-02-06T17:00:00.000Z"
-\}
-```
-
-### Obtener posts de un autor específico
-
-```bash
-curl https://blog-api-production.up.railway.app/api/posts/author/1
-```
-
-**Respuesta:**
-
-```json
-[
-  \{
-    "id": 1,
-    "title": "Introducción a Node.js",
-    "content": "Node.js es un runtime de JavaScript...",
-    "author_id": 1,
-    "published": true,
-    "created_at": "2024-02-06T15:30:00.000Z"
-  \},
-  \{
-    "id": 6,
-    "title": "Introducción a PostgreSQL",
-    "content": "PostgreSQL es una base de datos relacional de código abierto...",
-    "author_id": 1,
-    "published": true,
-    "created_at": "2024-02-06T17:00:00.000Z"
-  \}
-]
 ```
 
 ---
@@ -218,7 +117,7 @@ curl https://blog-api-production.up.railway.app/api/posts/author/1
 
 La documentación interactiva completa de la API está disponible en:
 
-**https://blog-api-production.up.railway.app/api-docs**
+**https://proyectom2brandonalmora-production.up.railway.app/api-docs**
 
 Ahí puedes:
 
@@ -241,8 +140,7 @@ Ahí puedes:
 1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/blog-api.git
-cd blog-api
+git clone https://github.com/branAlmoraM/ProyectoM2_BrandonAlmora.git
 ```
 
 1. Instalar dependencias:
@@ -258,7 +156,7 @@ Crea un archivo `.env` en la raíz del proyecto:
 ```
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=blog_db
+DB_NAME=db_blog
 DB_USER=tu_usuario
 DB_PASSWORD=tu_contraseña
 PORT=3000
@@ -271,10 +169,13 @@ PORT=3000
 psql -U postgres
 
 # Crear la base de datos
-CREATE DATABASE blog_db;
+CREATE DATABASE db_blog;
 
 # Ejecutar el script de setup
-psql -U tu_usuario -d blog_db -f db/setup.sql
+psql -U tu_usuario -d db_blog -f db/setup.sql
+
+# Ejecutar el script de seed
+psql -U tu_usuario -d db_blog -f db/seed.sql
 ```
 
 1. Iniciar el servidor:
