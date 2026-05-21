@@ -1,6 +1,9 @@
 // Aquí definimos la aplicación
 const { loadEnvFile } = require("node:process");
-loadEnvFile(".env");
+if (process.env.NODE_ENV !== "production") {
+  loadEnvFile(".env");
+}
+
 const express = require("express");
 
 const authorRoutes = require("./routes/authors");

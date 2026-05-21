@@ -1,5 +1,7 @@
 const { loadEnvFile } = require("node:process");
-loadEnvFile(".env");
+if (process.env.NODE_ENV !== "production") {
+  loadEnvFile(".env");
+}
 
 const app = require("./app");
 
